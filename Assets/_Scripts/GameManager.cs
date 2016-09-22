@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         gameoverScoreText.text = "Currency : +" + currency.ToString() + "x" + currencyValue.ToString() + "\nDistance : +" + Mathf.RoundToInt(distance).ToString() + "\nScore : " + score.ToString();
         highscoreText.text = "Highscore : " + usrDat.score;
         gameoverThing.SetActive(true);
-        Time.timeScale = 0.2f;
+        Time.timeScale = 0.15f;
         player.gameObject.SetActive(false);
     }
 

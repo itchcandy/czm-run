@@ -7,9 +7,10 @@ public class PlayerController : MonoBehaviour
     public GameManager gm;
     public Looper looper;
     bool lerpHori = false;
-    Vector3 targetPosition, sourcePosition;
+    Vector3 targetPosition, sourcePosition, targetRotation;
     Rigidbody rb;
     Animator anim;
+    float left = 0, right = 0, mov = 0;
 
     void Awake()
     {
@@ -19,15 +20,33 @@ public class PlayerController : MonoBehaviour
 
 	void Start ()
     {
-	
-	}
+
+    }
 	
 	void Update ()
     {
         if (rb.IsSleeping())
             rb.WakeUp();
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+            left = 1;
+        else if (Input.GetKeyUp(KeyCode.LeftArrow))
+            left = 0;
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+            right = 1;
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
+            right = 0;
         Move();
-	}
+        if (Input.GetKeyDown(KeyCode.H))
+            Rotate(10);
+        if (Input.GetKeyDown(KeyCode.G))
+            Rotate(-10);
+    }
+
+    void Rotate(float f)
+    {
+        Debug.Log("Rotating..");
+        transform.eulerAngles = Vector3.forward * f;
+    }
 
     public void Reset()
     {
@@ -50,26 +69,50 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        float f = Input.GetAxis("Horizontal");
-        if (f != 0)
+        if ((right - left) != 0)
         {
-            if (f < 0)
-            {
-                anim.ResetTrigger("Right");
-                anim.SetTrigger("Left");
-            }
-            else if (f > 0)
-            {
-                anim.ResetTrigger("Left");
-                anim.SetTrigger("Right");
-            }
-            sourcePosition = transform.position;
-            targetPosition = transform.position + Vector3.right * f * Time.deltaTime * handling;
-            if (targetPosition.x < minX)
-                targetPosition.x = minX;
-            else if (targetPosition.x > maxX)
-                targetPosition.x = maxX;
-            transform.position = Vector3.Lerp(sourcePosition, targetPosition, 0.2f);
+            if (mov == 0 || mov == (left-right))
+                targetRotation = Vector3.zero;
+            mov = right - left;
+            targetRotation += Vector3.forward * (left - right) * 100 * Time.deltaTime;
         }
+        else
+        {
+            targetRotation += Vector3.forward * mov * 100 * Time.deltaTime;
+            if ((targetRotation.z > 0 && mov > 0) || (targetRotation.z < 0 && mov < 0))
+                mov = 0;
+        }
+        if (targetRotation.z > 30)
+            targetRotation.z = 30;
+        else if (targetRotation.z < -30)
+            targetRotation.z = -30;
+        sourcePosition = transform.position;
+        targetPosition = transform.position + Vector3.right * (right-left) * Time.deltaTime * handling;
+        if (targetPosition.x < minX)
+            targetPosition.x = minX;
+        else if (targetPosition.x > maxX)
+            targetPosition.x = maxX;
+        transform.position = Vector3.Lerp(sourcePosition, targetPosition, 0.2f);
+        transform.eulerAngles = targetRotation;
+    }
+
+    public void LeftDown()
+    {
+        left = 1;
+    }
+
+    public void LeftUp()
+    {
+        left = 0;
+    }
+
+    public void RightDown()
+    {
+        right = 1;
+    }
+
+    public void RightUp()
+    {
+        right = 0;
     }
 }
