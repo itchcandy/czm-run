@@ -45,16 +45,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\JSON\JSONObject.cs" />
+     <Compile Include="Assets\JSON\JSONTemplates.cs" />
+     <Compile Include="Assets\JSON\VectorTemplates.cs" />
      <Compile Include="Assets\StarNestSkybox\Scripts\CameraScroll.cs" />
      <Compile Include="Assets\StarNestSkybox\Scripts\SkyboxSwitcher.cs" />
      <Compile Include="Assets\_Scripts\GameManager.cs" />
      <Compile Include="Assets\_Scripts\HelperClasses.cs" />
      <Compile Include="Assets\_Scripts\Looper.cs" />
      <Compile Include="Assets\_Scripts\PlayerController.cs" />
+     <None Include="Assets\JSON\readme.txt" />
      <None Include="Assets\StarNestSkybox\StarNestSkyboxReadme.txt" />
+     <None Include="Assets\Shaders\CurvedSurface.shader" />
      <None Include="Assets\StarNestSkybox\StarNestSkybox_HSV.shader" />
      <None Include="Assets\StarNestSkybox\StarNestSkyboxMask.shader" />
      <None Include="Assets\StarNestSkybox\hsv.cginc" />
+     <None Include="Assets\Shaders\Curved.shader" />
      <None Include="Assets\StarNestSkybox\StarNestSkybox.shader" />
      <None Include="Assets\StarNestSkybox\StarNest.shader" />
  <Reference Include="UnityEngine.UI">

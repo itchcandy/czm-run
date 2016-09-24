@@ -88,6 +88,8 @@ public class Looper : MonoBehaviour
 
     void Spawn()
     {
+        if (inactiveObstacles.Count <= 0)
+            return;
         int i = Random.Range(0, inactiveObstacles.Count);
         int j = Random.Range(0, spawnX.Count);
         GameObject g = inactiveObstacles[i];

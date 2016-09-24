@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{86ED1599-2557-5FE5-9FD2-CD447541039C}") = "cozmoRun", "Assembly-CSharp.csproj", "{CAE734A6-D009-F52F-62A9-17DD62DBB8EF}"
 EndProject
+Project("{86ED1599-2557-5FE5-9FD2-CD447541039C}") = "cozmoRun", "Assembly-CSharp-Editor.csproj", "{E155C278-DE2A-9386-0575-7F205D1F4439}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{CAE734A6-D009-F52F-62A9-17DD62DBB8EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAE734A6-D009-F52F-62A9-17DD62DBB8EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAE734A6-D009-F52F-62A9-17DD62DBB8EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E155C278-DE2A-9386-0575-7F205D1F4439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E155C278-DE2A-9386-0575-7F205D1F4439}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E155C278-DE2A-9386-0575-7F205D1F4439}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E155C278-DE2A-9386-0575-7F205D1F4439}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

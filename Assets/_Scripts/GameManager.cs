@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -15,7 +16,8 @@ public class GameManager : MonoBehaviour
     int score = 0, currency = 0, currencyValue = 100;
     bool isPause = false, isGameActive = false;
     UserClass usrDat;
-    string usrPath;
+    List<ShipClass> shipList;
+    string usrPath, shipPath, shipFirstTime;
 
     void Awake()
     {
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
+        return;
         isGameActive = false;
         score = (int)distance + currency * currencyValue;
         usrDat.coins += (int)currency;
@@ -142,6 +145,20 @@ public class GameManager : MonoBehaviour
                 usrDat = (UserClass)b.Deserialize(s);
             }
         }
+        string raw;
+        if (!File.Exists(shipPath))
+        {
+            raw = File.ReadAllText(shipFirstTime);
+            File.WriteAllText(shipPath, raw);
+        }
+        else
+            raw = File.ReadAllText(shipPath);
+        var t = new JSONObject(raw);
+        var l = t.list;
+        if (shipList == null)
+            shipList = new List<ShipClass>();
+        foreach (var u in l)
+            shipList.Add(JsonUtility.FromJson<ShipClass>(u.ToString()));
     }
 
     void SaveProgress()
